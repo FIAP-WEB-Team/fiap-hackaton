@@ -1,0 +1,67 @@
+@import "../../assets/styles/variables"; 
+
+.divField {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 8px 0px;
+    font-size: $font-size-normal;
+
+    label {
+        display: inline-block;
+        color: $gray;        
+        font-weight: 600;
+    }
+
+    &__group {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        position: relative;
+
+        img {
+            position: absolute;
+            right: 8px;
+            top: 20px;
+        }
+
+        input {
+            background-color: rgb(246, 246, 246);
+            padding: 10px 15px 5px 0px;
+            border-top: none;
+            border-right: none;
+            border-left: none;
+            border-image: initial;
+            border-bottom: 2px solid $black;
+            border-radius: 0px;
+            width: 100%;
+            color: $black;
+
+            &[error="1"] {
+                border-bottom: 2px solid rgb(240, 37, 37);
+            }
+
+            &:disabled {
+                border-bottom: 2px solid rgb(142, 142, 142);
+            }
+
+            &:focus {
+                outline: none;
+                background-color: rgb(246, 246, 246);
+                padding: 10px 15px 5px 0px;
+                border-top: none rgb(0, 144, 255);
+                border-right: none rgb(0, 144, 255);
+                border-left: none rgb(0, 144, 255);
+                border-image: initial;
+                border-bottom: 2px solid rgb(0, 144, 255);
+                border-radius: 0px;
+                width: 100%;
+                color: rgb(0, 0, 0);
+            }
+        }
+    }
+
+    @media screen and (max-width: 799px) {
+        font-size: $font-size-mobile;
+    }
+}

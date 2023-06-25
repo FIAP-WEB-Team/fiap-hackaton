@@ -1,0 +1,21 @@
+@import "../../../assets/styles/variables"; 
+
+.h3 {
+    font-size: $font-size-normal;
+    color: $gray; 
+    margin-bottom: 24px; 
+
+    @media screen and (max-width: 799px) {
+        font-size: $font-size-mobile;
+    }
+}
+
+.divRadio {
+    display: flex;
+    flex-direction: column;
+    color: $black;
+
+    label:last-child {
+        margin-bottom: 0px;
+    }
+}

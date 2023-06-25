@@ -1,0 +1,250 @@
+@import "../../assets/styles/variables"; 
+
+.section {
+    max-width: 1200px;
+    position: relative;
+    height: auto;
+    margin: 0 auto; 
+    min-height: calc(100vh - (350px));
+
+    h1 {
+        text-align: center;
+        font-size: 28px;
+
+        @media screen and (max-width: 799px) {
+            font-size: 22px;
+        }
+    }
+
+    &__article {
+        position: relative;        
+        display: flex;
+        flex-direction: column;
+        -webkit-box-align: center;
+        align-items: center;
+        margin-top: 29px;
+        margin-bottom: 10px;
+        // height: 100%;  
+        padding: 20px 0px; 
+        background-color: #f3f4f4;
+        border: 1px solid #d6d4d4;
+        -webkit-box-shadow: 0 0 9px 0 rgba(50,50,50,.15);
+        -moz-box-shadow: 0 0 9px 0 rgba(50,50,50,.15);
+        box-shadow: 0 0 9px 0 rgba(50,50,50,.15);  
+
+        @media screen and (max-width: 799px) {
+            width: 100%;
+        }
+
+        &__form {  
+            max-width: 449px;
+            width: 100%; 
+
+            @media screen and (max-width: 799px) {
+                width: 95%;
+            }
+            
+            &__divStep {
+                display: flex;
+                margin-bottom: 10px;
+                -webkit-box-pack: justify;
+                justify-content: space-between;
+                -webkit-box-align: center;
+                align-items: center;
+        
+                &__stepCount {
+                    display: flex;
+                    -webkit-box-pack: center;
+                    justify-content: center;
+                    -webkit-box-align: center;
+                    align-items: center;
+                    width: 32px;
+                    height: 32px;
+                    background-color: rgb(0, 0, 0);
+                    color: rgb(255, 255, 255);
+                    border-radius: 8px;
+                    margin-left: -67px;
+                }
+        
+                &__stepDescription {
+                    display: flex;
+                    flex-direction: row;
+                    -webkit-box-pack: justify;
+                    justify-content: space-between;
+                    -webkit-box-align: center;
+                    align-items: center;
+                    margin-left: 34px;
+                    width: 100%;
+        
+                    h2 {
+                        font-size: 22px;
+                        font-weight: 600;
+                        text-align: left;
+                    }
+                    
+                    span {
+                        font-size: 18px;
+                        color: rgb(194, 194, 194);
+                    }
+                }
+        
+            }
+
+            &__divStep2 {
+                display: flex;
+                margin-bottom: 32px;
+                -webkit-box-pack: justify;
+                justify-content: space-between;
+                -webkit-box-align: center;
+                align-items: center;
+                border-top: 1px solid rgb(194, 194, 194);
+                padding-top: 22px;
+            
+                div:first-child {
+                    background-color: rgb(246, 246, 246);
+                    color: rgb(194, 194, 194);
+                    border: 1px solid rgb(194, 194, 194);
+                }
+            
+                &__stepCount {
+                    display: flex;
+                    -webkit-box-pack: center;
+                    justify-content: center;
+                    -webkit-box-align: center;
+                    align-items: center;
+                    width: 32px;
+                    height: 32px;
+                    background-color: rgb(0, 0, 0);
+                    color: rgb(255, 255, 255);
+                    border-radius: 8px;
+                    margin-left: -67px;
+                }
+            
+                &__stepDescription2 {
+                    display: flex;
+                    flex-direction: row;
+                    -webkit-box-pack: justify;
+                    justify-content: space-between;
+                    -webkit-box-align: center;
+                    align-items: center;
+                    margin-left: 34px;
+                    width: 100%;
+            
+                    h2 {
+                        color: rgb(152, 152, 152);
+                        font-size: 22px;
+                        font-weight: 600;
+                        text-align: left;
+                    }
+            
+                    span {
+                        font-size: 18px;
+                        color: rgb(194, 194, 194);
+                    }
+                }
+            }
+            
+        }
+
+    }
+
+}
+
+
+.buttonNext {
+    cursor: pointer;
+    outline: 0px;
+    border: none;
+    border-radius: 8px;
+    font-family: "Clan Pro", sans-serif;
+    font-weight: 600;
+    transition: all 0.25s ease 0s;
+    white-space: nowrap;
+    height: 50px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    font-size: 14px;
+    line-height: 24px;
+    background: rgb(16, 16, 16);
+    color: rgb(255, 255, 255);
+    min-width: 99%;
+    width: 99%;
+    padding: 18px 32px;
+    transition: 0.4s;
+
+    &:hover {
+        background-color: $blue;
+    }
+
+    &__groupButton {
+        width: 100%;
+        display: flex;
+        -webkit-box-align: center;
+        align-items: center;
+        -webkit-box-pack: justify;
+        justify-content: space-between;
+        height: 60px;
+    }
+}
+
+.divStepBefore {
+    display: flex;
+    margin-bottom: 32px;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+
+    &__stepCheck {
+        display: flex;
+        -webkit-box-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        align-items: center;
+        width: 32px;
+        height: 32px;
+        background-color: rgb(142, 142, 142);
+        border: 1px solid rgb(142, 142, 142);
+        color: rgb(255, 255, 255);
+        border-radius: 8px;
+        margin-left: -67px;
+    }
+
+    &__stepDescription {
+        display: flex;
+        flex-direction: row;
+        -webkit-box-pack: justify;
+        justify-content: space-between;
+        -webkit-box-align: center;
+        align-items: center;
+        margin-left: 34px;
+        width: 100%;
+
+        h2 {
+            color: rgb(152, 152, 152);
+            font-size: 22px;
+            font-weight: 600;
+            text-align: left;
+        }
+
+        span {
+            padding: 0;
+            margin: 0;
+            color: rgb(0, 144, 255);
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+
+            &:hover{
+                color: rgb(160, 7, 207);
+            }
+        }
+    }
+}
+
+.spacing {
+    margin-bottom: 24px;
+    margin-top: 0px;
+    width: 100%;
+}
