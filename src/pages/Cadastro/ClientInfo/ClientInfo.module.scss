@@ -19,3 +19,36 @@
         margin-bottom: 0px;
     }
 }
+
+.divField {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 8px 0px;
+    margin-top: 7px;
+    font-size: $font-size-normal;
+
+    label {
+        display: inline-block;
+        color: $gray;        
+        font-weight: 600;
+    }
+
+    &__group {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        position: relative;
+
+        img {
+            position: absolute;
+            right: 8px;
+            top: 20px;
+        }
+
+    }
+
+    @media screen and (max-width: 799px) {
+        font-size: $font-size-mobile;
+    }
+}

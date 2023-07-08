@@ -1,0 +1,56 @@
+@import "../../assets/styles/variables"; 
+
+.divField {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 8px 0px;
+    margin-top: 7px;
+    font-size: $font-size-normal;
+
+    label {
+        display: inline-block;
+        color: $gray;        
+        font-weight: 600;
+    }
+
+    &__group {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        position: relative;
+
+        img {
+            position: absolute;
+            right: 8px;
+            top: 20px;
+        }
+
+        select {
+            background-color: rgb(246, 246, 246);
+            padding: 10px 15px 5px 10px;
+            border: 1px solid $gray;
+            border-image: initial;
+            border-radius: 5px;
+            width: 100%;
+            color: $gray;
+            margin-top: 5px;
+
+            &[error="1"] {
+                outline: none;
+                border-color: rgb(240, 37, 37); 
+            }
+
+            &:focus {
+                outline: none;
+                border-color: rgb(0, 144, 255);  
+            }
+        }
+
+    }
+
+    @media screen and (max-width: 799px) {
+        font-size: $font-size-mobile;
+    }
+
+}
