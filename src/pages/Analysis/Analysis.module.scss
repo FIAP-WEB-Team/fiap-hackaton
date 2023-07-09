@@ -1,0 +1,113 @@
+@import "../../assets/styles/variables"; 
+
+@mixin div_section {
+    flex-grow: 1;
+    flex-basis: 50%;
+
+    h3 {
+        text-decoration: underline;
+        svg {
+            margin-right: 5px;
+        }
+    }
+
+    table {
+        tr {
+            td:first-child {
+                width: 100px;
+                font-weight: 600;
+            }
+        }
+    }
+}
+
+.section {
+    max-width: 1200px;
+    position: relative;
+    height: auto;
+    margin: 0 auto; 
+    min-height: calc(100vh - (350px));
+
+    h1 {
+        text-align: center;
+        font-size: 28px;
+
+        @media screen and (max-width: 799px) {
+            font-size: 22px;
+        }
+    }
+
+    &__article {
+        position: relative;        
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 29px;
+        margin-bottom: 10px;
+        // height: 100%;  
+        padding: 20px 10px; 
+        background-color: #f3f4f4;
+        border: 1px solid #d6d4d4;
+        -webkit-box-shadow: 0 0 9px 0 rgba(50,50,50,.15);
+        -moz-box-shadow: 0 0 9px 0 rgba(50,50,50,.15);
+        box-shadow: 0 0 9px 0 rgba(50,50,50,.15);  
+        
+
+        @media screen and (max-width: 799px) {
+            width: 94%;
+            flex-direction: column;
+        }
+
+        &__info {
+            @include div_section;
+        }
+
+        &__ticket {
+            @include div_section;
+        }
+
+        &__photos {
+            flex-basis: 100%;
+            clear: both;
+            margin-top: 10px;
+
+            h3 {
+                text-align: center;
+                margin-bottom: 1px;
+                svg {
+                    margin-right: 5px;
+                }
+            }
+        }
+
+        &__form {
+            flex-basis: 100%;
+            clear: both;
+            margin-top: 20px;
+            border-top: 1px solid $black;            
+
+            &__status {
+                @media screen and (min-width: 800px) {
+                    width: 49%;
+                }
+                
+            }
+
+            &__level {
+                @media screen and (min-width: 800px) {
+                    width: 49%;
+                    position: absolute;
+                    right: 10px;
+                    margin-top: -83px;
+                }
+            }
+        }
+
+    }    
+
+}
+
+.spacing {
+    margin-bottom: 16px;
+    margin-top: 0px;
+    width: 100%;
+}

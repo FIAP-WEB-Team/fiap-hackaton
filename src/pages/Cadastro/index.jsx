@@ -6,6 +6,7 @@ import ClientInfo from './ClientInfo';
 import TicketInfo from './TicketInfo';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Button from '../../components/Button';
 
 const formTemplate = {
     ticketUsername: "",
@@ -186,11 +187,7 @@ export default function Cadastro() {
                         isFirstStep ? (
                             <>
                                 <div className={styles.spacing}></div>
-                                    <button type="button" className={styles.buttonNext} onClick={nextForm} >
-                                        <div className={styles.buttonNext__groupButton}>
-                                            <span>Prosseguir</span>
-                                        </div>
-                                    </button>
+                                    <Button description="Prosseguir" handle={nextForm} />
                                     
                                     <div className={styles.section__article__form__divStep2}>
                                     <div className={styles.section__article__form__divStep2__stepCount}>2</div>
@@ -203,11 +200,7 @@ export default function Cadastro() {
                         ) : (
                             <>
                                 <div className={styles.spacing}></div>
-                                <button type="button" className={styles.buttonNext} onClick={(e) => save()}>
-                                    <div className={styles.buttonNext__groupButton}>
-                                        <span>Cadastrar</span>
-                                    </div>
-                                </button>
+                                <Button description="Cadastrar" handle={save} />
                             </>
                         )
                     }                    
