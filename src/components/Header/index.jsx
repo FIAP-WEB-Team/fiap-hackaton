@@ -27,7 +27,7 @@ export default function Header() {
                     <Link to='/analysis'>Analisar Solicitação</Link>
                 </li>
                 <li className={'tab-establishment'} position="3" data-current={active[2]} >
-                    <a href="javascript:void(0)">Gerenciamento ??</a>
+                    <Link to='/management'>Gerenciamento</Link>
                 </li>
             </ul>
         </header>
