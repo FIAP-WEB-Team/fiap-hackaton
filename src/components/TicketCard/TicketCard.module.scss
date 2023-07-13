@@ -1,0 +1,52 @@
+@mixin mainCard($theme: #E4396D) {
+    border-radius: 10pt;
+    border-color: $theme;
+    border-width: 1pt;
+    border-style: solid;
+    text-align: center;
+    display: flex;
+    background-color: rgba($theme, .2);
+    margin-top: 5pt;
+    width: 400px;
+    height: 75px;
+    font-size: 16px;
+
+    &:hover {
+        background-color: rgba($theme, .7);
+    }
+
+    %__textField {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        justify-content: center;
+        flex-basis: 50%;
+        border-color: $theme;
+    }
+
+    &__simpleTextField {
+        @extend %__textField;
+    }
+
+    &__textFieldWithLine {
+        @extend %__textField;
+        border-right: 2px solid;
+    }
+
+    &__dateEntry {
+        font-style: italic;
+        font-size: 15px;
+    }
+}
+
+.pinkCard {
+    @include mainCard()
+}
+
+.blueCard {
+    @include mainCard(#3988E4)
+}
+
+.greenCard {
+    @include mainCard(#B9DC8C)
+}
