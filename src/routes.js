@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import Cadastro from "./pages/Cadastro";
 import Analysis from "./pages/Analysis";
 import Sandbox from "./pages/Sandbox";
+import Login from "./pages/Login";
 
 
 function AppRoutes() {
@@ -11,6 +12,7 @@ function AppRoutes() {
         <Header />
 
         <Routes>
+          {/* <Route path="/" element={<Login />} /> */}
           <Route path="/" element={<Cadastro />} />
           <Route path="/analysis" element={<Analysis />} />
         </Routes>
