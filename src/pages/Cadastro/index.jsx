@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import styles from './Cadastro.module.scss'; 
 import CheckWhiteIcon from '../../assets/images/icons/check-icon-white.svg';
 import { useForm } from '../../hooks/complainForm'; 
@@ -7,20 +7,27 @@ import TicketInfo from './TicketInfo';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Button from '../../components/Button';
+import { UserContext } from '../../contexts/UserContext';
+import { Navigate } from 'react-router-dom';
+
 
 const formTemplate = {
+    clerkID: "",
     ticketUsername: "",
     emailClient: "",
     channel: "", 
     type: "", 
     description: "",
+    clerkDescription: "",
     level: 1,
     status: 'Pending',
-    photos: [] 
+    bytePhotos: [] 
 } 
 
 export default function Cadastro() {
+    const { signed, clerk } = useContext(UserContext);    
     const [data, setData] = useState(formTemplate);
+
     const updateFieldHandler = (key, value) => {
         // console.log(data);
         setData((prev) => {
@@ -108,6 +115,7 @@ export default function Cadastro() {
     }
 
     const save = () => {
+        updateFieldHandler('clerkID', clerk); 
         const clientDiv = document.querySelector('.ticket');
         const textareas = clientDiv.querySelectorAll('textarea');
         const selects = clientDiv.querySelectorAll('select'); 
@@ -151,6 +159,10 @@ export default function Cadastro() {
         <TicketInfo data={data} handleValidator={handleValidator} updateFieldHandler={updateFieldHandler} />
     ];
     const { currentStep, currentComponent, isFirstStep, changeStep } = useForm(formComponents);
+
+    if(!signed) { 
+        return <Navigate to="/" />;         
+    } 
 
     return (
         <section className={styles.section}>

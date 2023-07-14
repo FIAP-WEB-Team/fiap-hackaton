@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styles from './TicketManagement.module.scss';
 
+import { UserContext } from '../../contexts/UserContext';
+import { Navigate } from 'react-router-dom';
 import FilterIcon from '../../assets/images/icons/filter-icon.svg';
 import SortAscIcon from '../../assets/images/icons/arrow-down-short-wide.svg';
 import SortDescIcon from '../../assets/images/icons/arrow-up-wide-short.svg';
@@ -47,18 +49,19 @@ function ticketButtonPressed(ticket) {
 }
 
 export default function TicketManagement() {
+    const { signed } = useContext(UserContext);
     const [filters, setFilters] = useState(new Filter(true, true, true, LastUpdateFilter.None))
     const [sortCriteria, setSortCriteria] = useState(SortCriteria.DateDesc)
     const [tickets, setTickets] = useState(DUMMY_TICKETS)
     const [displayTickets, setDisplayTickets] = useState(DUMMY_TICKETS)
     const [isFilterOverlayVisible, setIsFilterOverlayVisible] = useState(false)
-    const [isSortOverlayVisible, setIsSortOverlayVisible] = useState(true)
+    const [isSortOverlayVisible, setIsSortOverlayVisible] = useState(false)
 
     useEffect(() => {
         filterTickets(tickets, filters, setDisplayTickets)
     }, [filters])
 
-    const ticketsShow = [...displayTickets].sort((ticket1, ticket2) => {return compTickets(ticket1, ticket2, sortCriteria)}).map((ticket) => {
+    const ticketsShow = [...displayTickets].sort((ticket1, ticket2) => { return compTickets(ticket1, ticket2, sortCriteria) }).map((ticket) => {
         return (
             <div key={ticket.id}>
                 <TicketCard ticket={ticket} clickCallback={ticketButtonPressed} />
@@ -69,6 +72,10 @@ export default function TicketManagement() {
     const sortIcon = (sortCriteria === SortCriteria.DateAsc || sortCriteria === SortCriteria.LastUpdateAsc) ? SortAscIcon : SortDescIcon;
     const closeFilterWindow = () => setIsFilterOverlayVisible(false)
     const closeSortingWindow = () => setIsSortOverlayVisible(false)
+
+    if (!signed) {
+        return <Navigate to="/" />;
+    }
 
     return (
         <section className={styles.section}>

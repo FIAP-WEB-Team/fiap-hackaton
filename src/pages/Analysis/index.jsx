@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styles from './Analysis.module.scss';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -7,8 +7,11 @@ import "react-image-gallery/styles/css/image-gallery.css";
 import Select from '../../components/Select';
 import Textarea from '../../components/Textarea';
 import Button from '../../components/Button';
+import { UserContext } from '../../contexts/UserContext';
+import { Navigate } from 'react-router-dom';
 
 export default function Analysis() {
+    const { signed } = useContext(UserContext);
     const images = [
         {
             original: "https://picsum.photos/id/1018/1000/600/",
@@ -23,6 +26,10 @@ export default function Analysis() {
             thumbnail: "https://picsum.photos/id/1019/250/150/"
         }
     ];
+
+    if(!signed) { 
+        return <Navigate to="/" />;         
+    } 
 
     return (
         <section className={styles.section}>
