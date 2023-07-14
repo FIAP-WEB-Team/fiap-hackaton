@@ -38,7 +38,7 @@ export default function Login() {
             error++;
         }
 
-        if(password.length == 0) {
+        if(password.length === 0) {
             toast.error('Informe a senha!', {
                 position: "top-right",
                 autoClose: 4000,

@@ -1,15 +1,18 @@
 import styles from './Radio.module.scss';
 
-export default function Radio( {description, name, updateFieldHandler, disabled} ) {
+export default function Radio( {description, name, updateFieldHandler, disabled, value=null, extraProps={}} ) {
+    if (value === null)
+        value = description
     return (
         <label className={styles.label}>
             <input              
                 type="radio" 
                 name={name} 
-                value={description} 
+                value={value} 
                 onChange={(e) => updateFieldHandler(`${name}`, e.target.value)} 
                 disabled={disabled} 
-                required/>
+                required
+                {...extraProps}/>
             <span>{description}</span>
         </label>
     )
