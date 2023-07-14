@@ -2,8 +2,16 @@ import React, { useContext } from 'react';
 import styles from './Login.module.scss';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { UserContext } from '../../contexts/UserContext';
+import { Navigate } from 'react-router-dom';
 
 export default function Login() {
+    const { signIn, signed } = useContext(UserContext);
+    
+    if(signed) { 
+        return <Navigate to="/form" />;         
+    } 
+
     const validateEmail = (email) => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
@@ -54,7 +62,7 @@ export default function Login() {
 
     const handleLogin = (e) => {
         e.preventDefault();
-        const button = e.currentTarget;
+
         const form = document.getElementById("loginForm");        
         const flag = handleValidation("loginForm");
         if(!flag) {
@@ -73,7 +81,35 @@ export default function Login() {
 
         const email = form.elements.username.value;
         const password = form.elements.password.value;
-        alert(email+'-'+password); 
+        signIn(email, password)
+        .then((message) => {
+            console.log(message);
+            if(message === 'E-mail ou senha incorreta') {
+                toast.error('E-mail ou senha incorreta!', {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+            }
+        })
+        .catch((error) => {
+            console.error(error);
+            toast.error('Erro no servidor. Favor tentar mais tarde!', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+        });
     }
 
 

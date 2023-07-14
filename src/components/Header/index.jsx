@@ -9,7 +9,7 @@ export default function Header() {
     active[1] = 'false';
     active[2] = 'false';
 
-    if(location.pathname === '/') {
+    if(location.pathname === '/form') {
         active[0] = 'true';
     }else if(location.pathname === '/analysis') {
         active[1] = 'true';   
@@ -18,16 +18,13 @@ export default function Header() {
     }
 
     return (
-        <header className={styles.header}>
+        <header className={styles.header} data-current={active[2]}>
             <ul className={styles.header_ul}>
                 <li className={'tab-establishment'} position="0" data-current={active[0]} >
                     <Link to='/'>Cadastrar Solicitação</Link>
                 </li>
                 <li className={'tab-establishment'} position="2" data-current={active[1]} >
                     <Link to='/analysis'>Analisar Solicitação</Link>
-                </li>
-                <li className={'tab-establishment'} position="3" data-current={active[2]} >
-                    <a href="javascript:void(0)">Gerenciamento ??</a>
                 </li>
             </ul>
         </header>
