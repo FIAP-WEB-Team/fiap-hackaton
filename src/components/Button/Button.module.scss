@@ -35,4 +35,10 @@
         justify-content: space-between;
         height: 60px;
     }
+
+    &[data-disabled="disabled"] {
+        opacity: 0.5;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
 }

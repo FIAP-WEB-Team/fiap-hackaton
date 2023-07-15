@@ -2,15 +2,16 @@ import React, { useState, useEffect, useContext } from 'react';
 import styles from './TicketManagement.module.scss';
 
 import { UserContext } from '../../contexts/UserContext';
-import { Navigate } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import FilterIcon from '../../assets/images/icons/filter-icon.svg';
 import SortAscIcon from '../../assets/images/icons/arrow-down-short-wide.svg';
 import SortDescIcon from '../../assets/images/icons/arrow-up-wide-short.svg';
-import { SortCriteria, Filter, DUMMY_TICKETS, LastUpdateFilter } from './dataclasses.jsx';
+import { Ticket, ProblemType, Status, SortCriteria, Filter, DUMMY_TICKETS, LastUpdateFilter } from './dataclasses.jsx';
 import TicketCard from '../../components/TicketCard'
 import FilterPopup from './FilterPopup'
 import SortingPopup from './SortingPopup';
 import CustomOverlay from '../../components/CustomOverlay';
+import { returnComplaints } from '../../utils/databaseAPI';
 
 
 function filterTickets(tickets, filters, setDisplayTickets) {
@@ -58,16 +59,49 @@ export default function TicketManagement() {
     const [isSortOverlayVisible, setIsSortOverlayVisible] = useState(false)
 
     useEffect(() => {
-        filterTickets(tickets, filters, setDisplayTickets)
+        fetchTickets();
+    }, []);
+
+    useEffect(() => {
+        filterTickets(tickets, filters, updateDisplayTickets )
     }, [filters])
 
-    const ticketsShow = [...displayTickets].sort((ticket1, ticket2) => { return compTickets(ticket1, ticket2, sortCriteria) }).map((ticket) => {
-        return (
-            <div key={ticket.id}>
-                <TicketCard ticket={ticket} clickCallback={ticketButtonPressed} />
-            </div>
-        )
-    })
+    async function fetchTickets() {
+        try {            
+            const fetchedTickets = await returnComplaints();
+            if (fetchedTickets) {
+            const ticketData = fetchedTickets.map((ticket) => {
+                return new Ticket(
+                    ticket.ticketID,
+                    ProblemType[ticket.type],
+                    Status[ticket.status],
+                    ticket.date,
+                    ticket.lastUpdate,
+                    ticket.ticketUsername
+                );
+            });
+            setTickets(ticketData);
+            setDisplayTickets(ticketData);
+          } else {
+            console.error('Invalid ticket data: ', fetchedTickets);
+          }
+        } catch (error) {
+          console.error('Error fetching tickets:', error);
+        }
+    }
+
+    function updateDisplayTickets(filteredTickets) {
+        setDisplayTickets(filteredTickets);
+    }
+      
+    const ticketsShow = Array.isArray(displayTickets)
+        ? [...displayTickets].sort((ticket1, ticket2) => compTickets(ticket1, ticket2, sortCriteria))
+            .map((ticket) => (
+                <Link key={ticket.id} to={`/analysis/${ticket.id}`}>
+                    <TicketCard ticket={ticket} clickCallback={ticketButtonPressed} />
+                </Link>
+            ))
+        : null;
 
     const sortIcon = (sortCriteria === SortCriteria.DateAsc || sortCriteria === SortCriteria.LastUpdateAsc) ? SortAscIcon : SortDescIcon;
     const closeFilterWindow = () => setIsFilterOverlayVisible(false)

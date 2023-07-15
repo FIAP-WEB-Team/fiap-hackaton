@@ -33,7 +33,7 @@ export default function ClientInfo( {data, handleValidator, handleEmailChange, u
                     disabled={false} 
                 />
                 <Radio 
-                    description="E-mail"
+                    description="Email"
                     name="channel" 
                     data={data}
                     updateFieldHandler={updateFieldHandler}
@@ -47,7 +47,7 @@ export default function ClientInfo( {data, handleValidator, handleEmailChange, u
                     disabled={false} 
                 /> 
                 <Radio 
-                    description="Telefone"
+                    description="Phone"
                     name="channel" 
                     data={data}
                     updateFieldHandler={updateFieldHandler}

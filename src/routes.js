@@ -16,7 +16,7 @@ function AppRoutes() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/form" element={<Cadastro />} />
-          <Route path="/analysis" element={<Analysis />} />
+          <Route path="/analysis/:id" element={<Analysis />} />
           <Route path="/management" element={<TicketManagement />} />
         </Routes>
 

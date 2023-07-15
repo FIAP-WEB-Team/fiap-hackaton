@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Button from '../../components/Button';
 import { UserContext } from '../../contexts/UserContext';
 import { Navigate } from 'react-router-dom';
+import { createNewComplaint } from '../../utils/databaseAPI';
 
 
 const formTemplate = {
@@ -29,7 +30,6 @@ export default function Cadastro() {
     const [data, setData] = useState(formTemplate);
 
     const updateFieldHandler = (key, value) => {
-        // console.log(data);
         setData((prev) => {
           return {...prev, [key]: value};
         });
@@ -114,8 +114,9 @@ export default function Cadastro() {
         }
     }
 
-    const save = () => {
-        updateFieldHandler('clerkID', clerk); 
+    const save = async (e) => {
+        updateFieldHandler('clerkID', clerk);
+        const button = e.currentTarget; 
         const clientDiv = document.querySelector('.ticket');
         const textareas = clientDiv.querySelectorAll('textarea');
         const selects = clientDiv.querySelectorAll('select'); 
@@ -135,12 +136,37 @@ export default function Cadastro() {
                 error++;
             }
         }
-
-    
+        
         if(error === 0){
-            console.log(data);
-            alert('Cadastrando...');
+            button.setAttribute('data-disabled', 'disabled');
+            const check = await createNewComplaint(data);
+            if(check) {
+                toast.success('Reclamação cadastrada!', {
+                    position: "top-right",
+                    autoClose: 4000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+                window.location.reload();
+            }else {
+                button.setAttribute('data-disabled', '');
+                toast.error('Erro ao cadastrar reclamação!', {
+                    position: "top-right",
+                    autoClose: 4000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });                
+            }
         }else {
+            button.setAttribute('data-disabled', '');
             toast.error('Preencha todas informações!', {
                 position: "top-right",
                 autoClose: 4000,

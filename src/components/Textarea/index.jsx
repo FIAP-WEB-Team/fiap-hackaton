@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Textarea.module.scss';
 
-export default function Textarea( {description, name, row, handleValidator, children} ) {
+export default function Textarea( {description, name, row, handleValidator, children=''} ) {
     return (
         <div className={styles.divField}>
             <label>{description}</label>
@@ -10,8 +10,8 @@ export default function Textarea( {description, name, row, handleValidator, chil
                     id={name}
                     name={name}
                     onChange={handleValidator}
-                    rows={row}> 
-                    {children}
+                    rows={row} 
+                    defaultValue={children}>
                 </textarea> 
             </div>
         </div> 

@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Select.module.scss';
 
-export default function Select( {description, name, updateFieldHandler, children} ) {
+export default function Select( {description, name, updateFieldHandler, selected='', children} ) {
     return (
         <div className={styles.divField}>
             <label>{description}</label>
@@ -9,6 +9,7 @@ export default function Select( {description, name, updateFieldHandler, children
                 <select
                     id={name}
                     name={name}
+                    defaultValue={selected}
                     onChange={(e) => updateFieldHandler(`${name}`, e.target.value)} 
                 >
                     {children}   

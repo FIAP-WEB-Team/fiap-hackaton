@@ -37,13 +37,12 @@ export default function TicketInfo( {data, handleValidator, updateFieldHandler} 
             const base64 = reader.result;
             setUploadedImages((prevImages) => [
                 ...prevImages,
-                { id: Date.now(), base64 },
+                { base64 },
             ]);
-            updateFieldHandler('photos', [
-                ...data.photos,
-                { id: Date.now(), base64 },
+            updateFieldHandler('bytePhotos', [
+                ...data.bytePhotos,
+                { base64 },
             ]);
-            console.log(data.photos, uploadedImages);
         };
         reader.readAsDataURL(image);
     };
@@ -53,11 +52,10 @@ export default function TicketInfo( {data, handleValidator, updateFieldHandler} 
 
         if(confirmed) {
             const updatedImages = uploadedImages.filter(
-                (image) => image.id !== imageId
+                (image) => image.base64 !== imageId
             );
             setUploadedImages(updatedImages);
-            updateFieldHandler('photos', updatedImages);
-            console.log(updatedImages);
+            updateFieldHandler('bytePhotos', updatedImages);
         }    
     };
 
@@ -79,11 +77,11 @@ export default function TicketInfo( {data, handleValidator, updateFieldHandler} 
                     data={data}
                     updateFieldHandler={updateFieldHandler}
                 >
-                    <option value='' selected disabled>Selecione</option> 
-                    <option>Item defeituoso</option> 
-                    <option>Item não entregue</option>    
-                    <option>Entregue produto errado</option>    
-                    <option>Outros</option>  
+                    <option value='' disabled>Selecione</option> 
+                    <option value='DefectiveProduct'>Item defeituoso</option> 
+                    <option value='ProductNotDelivered'>Item não entregue</option>    
+                    <option value='ReceivedWrongProduct'>Entregue produto errado</option>    
+                    {/* <option value=''>Outros</option>   */}
                 </Select>
 
                 <Textarea 
@@ -114,9 +112,9 @@ export default function TicketInfo( {data, handleValidator, updateFieldHandler} 
                 <div className={styles.gallery} >
                 {
                     uploadedImages.map((image) => (
-                        <div key={image.id} className={styles.gallery__item} >
+                        <div key={image.base64} className={styles.gallery__item} >
                             <img src={image.base64} alt="Uploaded" />
-                            <button onClick={() => handleDelete(image.id)}>Remover</button>
+                            <button onClick={() => handleDelete(image.base64)}>Remover</button>
                         </div>
                     ))
                 }
