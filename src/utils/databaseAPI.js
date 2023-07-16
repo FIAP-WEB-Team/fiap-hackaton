@@ -18,7 +18,9 @@ export async function returnComplaint(id) {
 export async function createNewComplaint(newComplaint) {
     const url = urlPath + '/set';
 
-    const bytePhotosString = newComplaint.bytePhotos.map((photo) => photo.base64);
+    // const bytePhotosString = newComplaint.bytePhotos.map((photo) => photo.base64);
+    let bytePhotosString = newComplaint.bytePhotos.map((photo) => photo.base64.replace('data:image/jpg;base64,', ''));
+    bytePhotosString = newComplaint.bytePhotos.map((photo) => photo.base64.replace('data:image/jpeg;base64,', ''));
 
     const payload = {
         ...newComplaint,
@@ -33,7 +35,6 @@ export async function createNewComplaint(newComplaint) {
             },
             body: JSON.stringify(payload),
         });
-        // console.log(payload);
 
         if(response.ok) {
             console.log('Novo registro criado');

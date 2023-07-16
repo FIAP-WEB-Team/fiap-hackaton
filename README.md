@@ -9,7 +9,7 @@
 ## 🔨 Tecnologias
 * REACTJS
 * HTML
-* CSS
+* SCSS
 
 ## ✔️ Outras tecnologias contempladas no projeto
 * Hooks

@@ -139,6 +139,7 @@ export default function Cadastro() {
         
         if(error === 0){
             button.setAttribute('data-disabled', 'disabled');
+            button.innerHTML = "Cadastrando...";
             const check = await createNewComplaint(data);
             if(check) {
                 toast.success('Reclamação cadastrada!', {
@@ -154,6 +155,7 @@ export default function Cadastro() {
                 window.location.reload();
             }else {
                 button.setAttribute('data-disabled', '');
+                button.innerHTML = "Cadastrar";
                 toast.error('Erro ao cadastrar reclamação!', {
                     position: "top-right",
                     autoClose: 4000,
@@ -167,6 +169,7 @@ export default function Cadastro() {
             }
         }else {
             button.setAttribute('data-disabled', '');
+            button.innerHTML = "Cadastrar";
             toast.error('Preencha todas informações!', {
                 position: "top-right",
                 autoClose: 4000,

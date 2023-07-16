@@ -17,7 +17,8 @@ export default function TicketInfo( {data, handleValidator, updateFieldHandler} 
     };
 
     const handleUpload = (image) => {
-        const validFileExtensions = ['.jpg', '.jpeg', '.bmp', '.gif', '.png'];
+        const validFileExtensions = ['.jpg', '.jpeg'];
+        // const validFileExtensions = ['.jpg', '.jpeg', '.bmp', '.gif', '.png'];
 
         if (!image) {
             alert('No image selected.');
@@ -35,6 +36,7 @@ export default function TicketInfo( {data, handleValidator, updateFieldHandler} 
         const reader = new FileReader();
         reader.onload = () => {
             const base64 = reader.result;
+            // console.log(base64);
             setUploadedImages((prevImages) => [
                 ...prevImages,
                 { base64 },
@@ -104,7 +106,7 @@ export default function TicketInfo( {data, handleValidator, updateFieldHandler} 
 
                 <div className={styles.divStepBefore}>
                     <div className={styles.divStepBefore__stepDescription}>
-                        <span onClick={clickHandleFileChange}>+ Adicionar anexo(s)</span>
+                        <span onClick={clickHandleFileChange}>+ Adicionar anexo(s) [jpeg]</span>
                     </div> 
                     <input type="file" id="file" name="file" accept="image/*" onChange={handleFileChange} style={{ display: 'none'}} />
                 </div> 
