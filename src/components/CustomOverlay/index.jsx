@@ -1,9 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import styles from './CustomOverlay.module.scss';
 
-import Radio from '../Radio'
-import Button from '../Button';
-
 
 export default function CustomOverlay({ onClose, component }) {
     const overlayRef = useRef();
@@ -19,7 +16,7 @@ export default function CustomOverlay({ onClose, component }) {
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
-    }, []);
+    });
 
     return (
         <div className={styles.overlay}>

@@ -16,9 +16,9 @@ const dateOptions = {
 
 export default function TicketCard({ ticket, clickCallback }) {
     var cardStyle = styles.blueCard;
-    if (ticket.status == Status.Completed)
+    if (ticket.status === Status.Completed)
         cardStyle = styles.greenCard;
-    else if (ticket.status == Status.Forwarded)
+    else if (ticket.status === Status.Forwarded)
         cardStyle = styles.pinkCard;
     return (
         <button className={cardStyle} onClick={() => clickCallback(ticket)}>

@@ -3,16 +3,19 @@ const urlPath = 'https://complaintsbackc.azurewebsites.net/complaints';
 
 export async function returnComplaints() {
     const url = urlPath + '/get';
-    const response = await fetch(url); 
+    const response = await fetch(url);
     const data = await response.json();
     return data;
 }
 
 export async function returnComplaint(id) {
-    const url = urlPath + '/getwithid/'+id;
-    const response = await fetch(url);
-    const data = await response.json();
-    return data;
+    try {
+        const url = urlPath + '/getwithid/' + id;
+        const response = await fetch(url);
+        return await response.json();
+    } catch (error) {
+    }
+    return null
 }
 
 export async function createNewComplaint(newComplaint) {
@@ -36,10 +39,10 @@ export async function createNewComplaint(newComplaint) {
             body: JSON.stringify(payload),
         });
 
-        if(response.ok) {
+        if (response.ok) {
             console.log('Novo registro criado');
             return true;
-        }else {
+        } else {
             console.error('Erro ao criar novo registro:', response.status);
             return false;
         }
@@ -61,10 +64,10 @@ export async function updateComplaint(complaint) {
             body: JSON.stringify(complaint),
         });
 
-        if(response.ok) {
+        if (response.ok) {
             console.log('Registro atualizado');
             return true;
-        }else {
+        } else {
             console.error('Erro ao atualizar registro:', response.status);
             return false;
         }

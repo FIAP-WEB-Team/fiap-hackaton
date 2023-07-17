@@ -64,7 +64,7 @@ export default function TicketManagement() {
 
     useEffect(() => {
         filterTickets(tickets, filters, updateDisplayTickets )
-    }, [filters])
+    }, [tickets, filters])
 
     async function fetchTickets() {
         try {            
@@ -75,8 +75,8 @@ export default function TicketManagement() {
                     ticket.ticketID,
                     ProblemType[ticket.type],
                     Status[ticket.status],
-                    ticket.date,
-                    ticket.lastUpdate,
+                    new Date(ticket.date),
+                    new Date(ticket.lastUpdate),
                     ticket.ticketUsername
                 );
             });

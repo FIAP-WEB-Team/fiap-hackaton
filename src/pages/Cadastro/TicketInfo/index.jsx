@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Input from '../../../components/Input';
 import styles from './TicketInfo.module.scss';
 import Select from '../../../components/Select';
 import Textarea from '../../../components/Textarea';
@@ -18,7 +17,6 @@ export default function TicketInfo( {data, handleValidator, updateFieldHandler} 
 
     const handleUpload = (image) => {
         const validFileExtensions = ['.jpg', '.jpeg'];
-        // const validFileExtensions = ['.jpg', '.jpeg', '.bmp', '.gif', '.png'];
 
         if (!image) {
             alert('No image selected.');
@@ -36,7 +34,6 @@ export default function TicketInfo( {data, handleValidator, updateFieldHandler} 
         const reader = new FileReader();
         reader.onload = () => {
             const base64 = reader.result;
-            // console.log(base64);
             setUploadedImages((prevImages) => [
                 ...prevImages,
                 { base64 },
