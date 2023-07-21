@@ -4,7 +4,7 @@
 
 <p align="center"> <strong>Hackathon</strong> </p>
 <p align="center"> <img src="https://github.com/FIAP-WEB-Team/fiap-hackaton/blob/main/src/assets/images/app/winner.png" alt="Winner hackathon"> </p>
-<p align="center">Ganhadores do **hackathon** FIAP FullStack 2023. Alyson Eiti, Lucas Soares e Pedro Borges.</p>
+<p align="center">Ganhadores do <strong>hackathon</strong> FIAP FullStack 2023. Alyson Eiti, Lucas Soares e Pedro Borges.</p>
 
 ## 📒 Descrição do Projeto
 O projeto é uma solução desenvolvida durante o hackathon FIAP FullStack 2023. Foi proposto um caso de uso em que um modelo de e-commerce utilizava cinco sistemas diferentes para atendimento, havendo a necessidade de unificar a gestão desses sistemas. A solução visa substituir os sistemas existentes, oferecendo recursos como o envio de fotos pelos clientes para evidência do problema ou comprovante. O projeto também contempla o backend em núvem pela azure, além da integração com uma plataforma de mensageria.
